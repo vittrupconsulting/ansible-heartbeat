@@ -1,9 +1,11 @@
 ---
 
+target: /tmp
+
 http:
   host: localhost     
   port: 8080      
-  uri: /      
+  path: 
       
 mysql:
   host: localhost     

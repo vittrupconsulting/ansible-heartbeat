@@ -5,19 +5,4 @@
       name: "{{ id }}"
       minute: "*"
       job: "ls -alh > /dev/null"
-      
-  - name: mysql --> host
-    debug:
-      msg: "{{ host | default(mysql.host) }}"
-
-  - name: mysql --> port
-    debug:
-      msg: "{{ port | default(mysql.port) }}"
-            
-  - name: mysql --> username
-    debug:
-      msg: "{{ username | default(mysql.username) }}"
-      
-  - name: mysql --> password
-    debug:
-      msg: "{{ password | default(mysql.password) }}"            
+           

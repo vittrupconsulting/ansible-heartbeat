@@ -5,23 +5,3 @@
       name: "{{ id }}"
       minute: "*"
       job: "ls -alh > /dev/null"
-      
-  - name: oracle --> host
-    debug:
-      msg: "{{ host | default(oracle.host) }}"
-
-  - name: oracle --> port
-    debug:
-      msg: "{{ port | default(oracle.port) }}"
-            
-  - name: oracle --> username
-    debug:
-      msg: "{{ username | default(oracle.username) }}"
-      
-  - name: oracle --> password
-    debug:
-      msg: "{{ password | default(oracle.password) }}"  
-      
-  - name: oracle --> sid
-    debug:
-      msg: "{{ sid | default(oracle.sid) }}"   

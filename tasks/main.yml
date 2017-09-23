@@ -5,26 +5,30 @@
       tasks_from: http
     vars:
       id: heartbeat_http
+      host: api.github.com
+      path: user
+      port: 80
 #      host: localhost     
 #      port: 8080      
 #      uri: /      
+#https://api.github.com/user
       
-  - include_role:
-      name: heartbeat
-      tasks_from: mysql
-    vars:
-      id: heartbeat_mysql
+#  - include_role:
+#      name: heartbeat
+#      tasks_from: mysql
+#    vars:
+#      id: heartbeat_mysql
 #      host: localhost     
 #      port: 8080      
 #      uri: /
-      username: user
-      password: password     
-      
-  - include_role:
-      name: heartbeat
-      tasks_from: oracle
-    vars:
-      id: heartbeat_oracle
+#      username: user
+#      password: password     
+#      
+#  - include_role:
+#      name: heartbeat
+#      tasks_from: oracle
+#    vars:
+#      id: heartbeat_oracle
 #      host: localhost     
 #      port: 8080      
 #      sid: 123
