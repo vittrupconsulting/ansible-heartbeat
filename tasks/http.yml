@@ -4,11 +4,11 @@
     cron:
       name: "{{ id }}"
       minute: "*"
-      job: "/opt/http.sh"
+      job: "/opt/{{ id }}.sh"
 
   - name: Script for {{ id }}
     template:
-      src: http.sh.j2
-      dest: /opt/http.sh
+      src: http/http-{{ mode | default("json") }}.sh.j2
+      dest: /opt/{{ id }}.sh
       mode: 0700
       
