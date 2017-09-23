@@ -7,6 +7,7 @@ http:
   port: 8080      
   path: 
   mode: json
+  protocol: http
       
 mysql:
   host: localhost     

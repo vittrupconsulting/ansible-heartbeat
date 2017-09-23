@@ -1,16 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import requests
 import json
     
-r = requests.get('http://{{ host }}:{{ port }}/{{ path }}')
+r = requests.get('{{ url }}')
 r.status_code
 r.headers['content-type']
 r.encoding
 r.text
 r.json()
 
-with open('{{ target }}/{{ id }}.json', 'w') as txtfile:
+with open('{{ output }}', 'w') as txtfile:
     json.dump(r.json(), txtfile)
 
 txtfile.close() 

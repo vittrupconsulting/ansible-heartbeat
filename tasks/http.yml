@@ -4,11 +4,12 @@
     cron:
       name: "{{ id }}"
       minute: "*"
-      job: "/opt/{{ id }}.sh"
+      job: "/usr/bin/python /opt/{{ id }}.py"
 
   - name: Script for {{ id }}
     template:
-      src: http/http-{{ mode | default("json") }}.sh.j2
-      dest: /opt/{{ id }}.sh
-      mode: 0700
-      
+      src: http/http-{{ mode | default(http.mode) }}.py.j2
+      dest: /opt/{{ id }}.py
+    vars:
+      url: "{{ protocol | default(http.protocol) }}://{{ host | default(http.host) }}:{{ port | default(http.port) }}/{{ path | default(http.path) }}"
+      output: "{{ target }}/{{ id }}.json"
