@@ -1,0 +1,23 @@
+---
+
+  - name: Crontab for {{ id }} 
+    cron:
+      name: "{{ id }}"
+      minute: "*"
+      job: "ls -alh > /dev/null"
+  
+  - name: http --> id
+    debug:
+      msg: "{{ id }}"
+
+  - name: http --> host
+    debug:
+      msg: "{{ host | default(http.host) }}"
+
+  - name: http --> port
+    debug:
+      msg: "{{ port | default(http.port) }}"
+      
+  - name: http --> uri
+    debug:
+      msg: "{{ uri | default(http.uri) }}"            

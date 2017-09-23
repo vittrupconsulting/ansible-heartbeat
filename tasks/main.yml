@@ -1,2 +1,32 @@
 ---
-# tasks file for heartbeat
+
+  - include_role:
+      name: heartbeat
+      tasks_from: http
+    vars:
+      id: heartbeat_http
+#      host: localhost     
+#      port: 8080      
+#      uri: /      
+      
+  - include_role:
+      name: heartbeat
+      tasks_from: mysql
+    vars:
+      id: heartbeat_mysql
+#      host: localhost     
+#      port: 8080      
+#      uri: /
+      username: user
+      password: password     
+      
+  - include_role:
+      name: heartbeat
+      tasks_from: oracle
+    vars:
+      id: heartbeat_oracle
+#      host: localhost     
+#      port: 8080      
+#      sid: 123
+#      username: user
+#      password: password                 
