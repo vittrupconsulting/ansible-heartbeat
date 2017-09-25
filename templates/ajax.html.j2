@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heartbeat</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <link rel="stylesheet" type="text/css" href="eap.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="prototype.js"></script>
+<script type="text/javascript">
+Event.observe(window, 'load', function() {
+
+function check(module) {
+    new Ajax.PeriodicalUpdater('',"http://localhost:8180/" + module + ".json", {
+        method: 'get', frequency: Math.floor(Math.random() * 10) + 10,
+        onCreate: function(response) {
+            if($(module).readAttribute('src') == "error.png"){
+                $(module).writeAttribute('src', "running_red.gif")
+            } else if($(module).readAttribute('src') == "success.png"){
+                $(module).writeAttribute('src', "running_green.gif")
+            } else {
+                $(module).writeAttribute('src', "spinner.gif")
+            }
+        },
+        onSuccess: function(response) {
+            setTimeout(function () {
+                var status = response.responseText.evalJSON()
+                $(module).writeAttribute('src', status.status + '.png');
+                $(module).writeAttribute('title', status.code);
+            }, 1000);
+        }
+     });
+}
+});
+</script>
+</head>
+<body>
+
+<h1>Monitoring</h1>
+
+<table>
+
+<tr>
+<td><h2>Integration endpoints</h2></td>
+<td>&nbsp;</td>
+</tr>
+{% for key in integrations %}
+<tr>
+<td><a href="{{ heartbeat[key].url }}">{{ heartbeat[key].label }}</a></td>
+<td><img id="{{ key }}" src="spinner.gif"/></td>
+</tr>
+{% endfor %}
+
+
+</table>
+
+</body >
+</html>

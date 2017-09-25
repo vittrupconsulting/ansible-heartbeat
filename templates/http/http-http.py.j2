@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+import requests
+
+try:
+    r = requests.get('{{ url }}')
+except requests.exceptions.RequestException as e:
+    fh = open('{{ output }}', 'w')
+    fh.write('{ "status":"error", "code":"404 Not Found" }')
+    fh.close()
+    sys.exit(1)
+
+fh = open('{{ output }}', 'w')
+fh.write('{ "status":"success", "code":"200 OK" }')
+fh.close()
+
+
+
+
+
+

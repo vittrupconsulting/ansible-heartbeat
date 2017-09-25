@@ -2,15 +2,30 @@
 
 import requests
 import json
-    
-r = requests.get('{{ url }}')
-r.status_code
-r.headers['content-type']
-r.encoding
-r.text
-r.json()
 
-with open('{{ output }}', 'w') as txtfile:
-    json.dump(r.json(), txtfile)
+try:
+    r = requests.get('{{ url }}')
+except requests.exceptions.RequestException as e:
+    fh = open('{{ output }}', 'w')
+    fh.write("failure")
+    fh.close()
+    sys.exit(1)
 
-txtfile.close() 
+fh = open('{{ output }}', 'w')
+fh.write("success")
+fh.close()
+
+
+# with open('{{ output }}', 'w') as txtfile:
+#     json.dump(r.json(), txtfile)
+# txtfile.close()
+
+# r.status_code
+# r.headers['content-type']
+# r.encoding
+# r.text
+# r.json()
+
+
+
+
