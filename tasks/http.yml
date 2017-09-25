@@ -13,3 +13,10 @@
     vars:
       url: "{{ protocol | default(http.protocol) }}://{{ host | default(http.host) }}:{{ port | default(http.port) }}/{{ path | default(http.path) }}"
       output: "{{ target }}/{{ id }}.json"
+
+  - name: Adding javascript trigger for {{ id }}
+    lineinfile:
+      path: "{{ target }}/ajax.html"
+      insertafter: '^Event.observe'
+      line: "check(\"{{ id }}\")"
+    changed_when: false
