@@ -2,17 +2,17 @@
 
   - name: Crontab for {{ id }} 
     cron:
-      name: "{{ id }}"
+      name: "{{ server }}/{{ id }}"
       minute: "*"
-      job: "/usr/bin/python /opt/{{ id }}.py"
+      job: "/usr/bin/python {{ scripts }}/{{ id }}.py"
 
   - name: Script for {{ id }}
     template:
       src: http/http-{{ mode | default(http.mode) }}.py.j2
-      dest: /opt/{{ id }}.py
+      dest: "{{ scripts }}/{{ id }}.py"
     vars:
       url: "{{ protocol | default(http.protocol) }}://{{ host | default(http.host) }}:{{ port | default(http.port) }}/{{ path | default(http.path) }}"
-      output: "{{ target | dirname}}/{{ id }}.json"
+      output: "{{ target | dirname }}/{{ id }}.json"
 
   - name: Adding javascript trigger for {{ id }}
     lineinfile:

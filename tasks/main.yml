@@ -1,5 +1,18 @@
 ---
 
+  - pip:
+      name: requests
+
+  - name: Directory with heartbeat python scripts
+    file:
+      path: "{{ scripts }}"
+      state: directory
+
+  - name: Directory with heartbeat outout json files
+    file:
+      path: "{{ target | dirname }}"
+      state: directory
+
   - name: Copying heartbeat static file ressources
     copy:
       src: "client/{{ item }}"
@@ -14,6 +27,6 @@
 
   - name: Creating heartbeat dynamic ressource
     template:
-      src: "ajax.html.j2"
+      src: "{{ server }}.html.j2"
       dest: "{{ target }}"
     changed_when: false

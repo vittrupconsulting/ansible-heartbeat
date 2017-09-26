@@ -11,7 +11,7 @@
 Event.observe(window, 'load', function() {
 
 function check(module) {
-    new Ajax.PeriodicalUpdater('',"http://localhost:8180/" + module + ".json", {
+    new Ajax.PeriodicalUpdater('',"http://localhost:{{ port }}/heartbeat/" + module + ".json", {
         method: 'get', frequency: Math.floor(Math.random() * 10) + 10,
         onCreate: function(response) {
             if($(module).readAttribute('src') == "error.png"){
@@ -46,11 +46,19 @@ function check(module) {
 </tr>
 {% for key in integrations %}
 <tr>
-<td><a href="{{ heartbeat[key].url }}">{{ heartbeat[key].label }}</a></td>
-<td><img id="{{ key }}" src="spinner.gif"/></td>
+<td><a href="http://{{ inventory_hostname }}:{{ integrations[key].port }}/{{ integrations[key].name }}-status/isAlive">{{ integrations[key].name }}</a></td>
+<td><img id="{{ integrations[key].name }}" src="spinner.gif"/></td>
 </tr>
 {% endfor %}
 
+<tr>
+<td><h2>Service endpoints</h2></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td><a href="http://{{ integration.fhir.host }}:{{ integration.fhir.port }}/{{ integration.fhir.path }}/status">fhir-server</a></td>
+<td><img id="fhir-server" src="spinner.gif"/></td>
+</tr>
 
 </table>
 

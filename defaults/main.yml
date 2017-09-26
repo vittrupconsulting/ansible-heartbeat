@@ -1,23 +1,24 @@
 ---
 
 target: "/opt/{{ server }}/welcome-content/heartbeat/index.html"
+scripts: "/opt/{{ server }}/heartbeat"
 
 http:
-  host: localhost     
+  host: localhost
   port: 8080      
   path: 
   mode: http
   protocol: http
       
 mysql:
-  host: localhost     
+  host: localhost
   port: 8080      
   uri: /
   username: user
   password: password     
       
 oracle:
-  host: localhost     
+  host: localhost
   port: 8080      
   sid: 123
   username: user
