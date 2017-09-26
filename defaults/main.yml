@@ -1,12 +1,12 @@
 ---
 
-target: /tmp
+target: "/opt/{{ server }}/welcome-content/heartbeat/index.html"
 
 http:
   host: localhost     
   port: 8080      
   path: 
-  mode: json
+  mode: http
   protocol: http
       
 mysql:

@@ -1,8 +1,8 @@
 ---
 
-  - name: Crontab for {{ id }} 
-    cron:
-      name: "{{ id }}"
-      minute: "*"
-      job: "ls -alh > /dev/null"
+#  - name: Crontab for {{ id }}
+#    cron:
+#      name: "{{ id }}"
+#      minute: "*"
+#      job: "ls -alh > /dev/null"
            

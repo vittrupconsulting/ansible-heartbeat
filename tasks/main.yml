@@ -1,9 +1,9 @@
 ---
 
-  - name: Copying heartbeat ressource {{ item }}
+  - name: Copying heartbeat static file ressources
     copy:
       src: "client/{{ item }}"
-      dest: "{{ target }}"
+      dest: "{{ target | dirname }}"
     with_items:
       - error.png
       - success.png
@@ -11,69 +11,9 @@
       - running_green.gif
       - running_red.gif
       - spinner.gif
-#
-#  - name: Copying heartbeat ressources ajax.html
-#    copy:
-#      src: "client/ajax.html"
-#      dest: "{{ target }}"
-#    changed_when: false
 
-
-  - name: Copying heartbeat ressources ajax.html
+  - name: Creating heartbeat dynamic ressource
     template:
       src: "ajax.html.j2"
-      dest: "{{ target }}/ajax.html"
+      dest: "{{ target }}"
     changed_when: false
-
-
-#  - name: Setting executable flag on provided shell files
-#    file:
-#      path: "/opt/tomcat/webclient-server/apache-tomcat-{{ version }}/bin/{{ item }}"
-#      mode: 0755
-#    with_items:
-#      - "catalina.sh"
-#      - "configtest.sh"
-#      - "daemon.sh"
-#      - "digest.sh"
-#      - "setclasspath.sh"
-#      - "shutdown.sh"
-#      - "startup.sh"
-#      - "tool-wrapper.sh"
-#      - "version.sh"
-#
-#
-#  - include_role:
-#      name: heartbeat
-#      tasks_from: http
-#    vars:
-#      id: heartbeat_http
-#      host: api.github.com
-#      path: user
-#      port: 80
-
-#      host: localhost     
-#      port: 8080      
-#      uri: /      
-#https://api.github.com/user
-      
-#  - include_role:
-#      name: heartbeat
-#      tasks_from: mysql
-#    vars:
-#      id: heartbeat_mysql
-#      host: localhost     
-#      port: 8080      
-#      uri: /
-#      username: user
-#      password: password     
-#      
-#  - include_role:
-#      name: heartbeat
-#      tasks_from: oracle
-#    vars:
-#      id: heartbeat_oracle
-#      host: localhost     
-#      port: 8080      
-#      sid: 123
-#      username: user
-#      password: password                 

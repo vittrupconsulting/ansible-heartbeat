@@ -12,11 +12,11 @@
       dest: /opt/{{ id }}.py
     vars:
       url: "{{ protocol | default(http.protocol) }}://{{ host | default(http.host) }}:{{ port | default(http.port) }}/{{ path | default(http.path) }}"
-      output: "{{ target }}/{{ id }}.json"
+      output: "{{ target | dirname}}/{{ id }}.json"
 
   - name: Adding javascript trigger for {{ id }}
     lineinfile:
-      path: "{{ target }}/ajax.html"
+      path: "{{ target }}"
       insertafter: '^Event.observe'
       line: "check(\"{{ id }}\")"
     changed_when: false
